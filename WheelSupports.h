@@ -55,7 +55,7 @@ enum DeviceMode {
 	DeviceModeFull
 };
 
-#define MakeDeviceID(productID, vendorID) 			( (((productID) % 0xFFFF) << 16) | ((vendorID) & 0xFFFF) )
+#define MakeDeviceID(productID, vendorID)			( (((productID) % 0xFFFF) << 16) | ((vendorID) & 0xFFFF) )
 
 // GamePad command codes structure
 #define kGPCommandsMax								4
