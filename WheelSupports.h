@@ -1,9 +1,9 @@
 //
-//  WheelSupports.h
-//  WheelSupportTools
+// WheelSupports.h
+// WheelSupportTools
 //
-//  Created by Annop Prapasapong on 27/11/2012.
-//  Copyright (c) 2012 Feral Interactive.
+// Created by Annop Prapasapong on 27/11/2012.
+// Copyright (c) 2012 Feral Interactive.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -47,24 +47,22 @@
 #define kGPLogitechWheelRangeMax					900
 
 //=============================================================================
-typedef UInt32										DeviceID;
+typedef UInt32 DeviceID;
 
-enum DeviceMode
-{
+enum DeviceMode {
 	DeviceModeInfoOnly,
 	DeviceModeStandard,
 	DeviceModeFull
 };
 
-#define MakeDeviceID(productID, vendorID)			( (((productID) % 0xFFFF) << 16) | ((vendorID) & 0xFFFF) )
+#define MakeDeviceID(productID, vendorID) 			( (((productID) % 0xFFFF) << 16) | ((vendorID) & 0xFFFF) )
 
 // GamePad command codes structure
 #define kGPCommandsMax								4
 #define kGPCommandMaxLength							8
 #define kGPCommandsDataSize							sizeof(UInt8) * kGPCommandsMax * kGPCommandMaxLength
 
-struct CCommands
-{
+struct CCommands {
 	UInt8 cmds[kGPCommandsMax][kGPCommandMaxLength];
 	UInt8 count;
 };
@@ -73,18 +71,23 @@ struct CCommands
 IOHIDManagerRef AllocateHIDManager();
 
 bool ConfigAllDevices(const DeviceMode mode);
+
 bool ConfigDevice(IOHIDDeviceRef hidDevice, DeviceID deviceID, const DeviceMode mode);
 
 IOReturn OpenDevice(IOHIDDeviceRef hidDevice);
+
 IOReturn CloseDevice(IOHIDDeviceRef hidDevice);
+
 IOReturn SendCommands(IOHIDDeviceRef hidDevice, CCommands *commands);
 
 CFStringRef GetPropertyString(IOHIDDeviceRef hidDevice, CFStringRef property);
+
 UInt32 GetPropertyNumber(IOHIDDeviceRef hidDevice, CFStringRef property);
 
 bool ConfigLogitechWheels(IOHIDDeviceRef hidDevice, DeviceID deviceID, bool native, const DeviceMode targetMode);
 
 void GetCmdLogitechWheelNative(CCommands *c, const DeviceID deviceID);
+
 void GetCmdLogitechWheelRange(CCommands *c, const DeviceID deviceID, int range);
 
 #endif /* defined(__WheelSupportTools__WheelSupports__) */
